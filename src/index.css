@@ -142,9 +142,9 @@ code {
   box-shadow: 0 10px 15px rgba(0,0,0,0.3);
   transition: .5s;
 }
-.card:hover {
+/* .card:hover {
   transform:scale(1.05);
-}
+} */
 
 .card_three, .card_three .title .fa  {
   color: #fff;
