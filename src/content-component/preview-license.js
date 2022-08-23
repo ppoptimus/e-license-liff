@@ -2,8 +2,9 @@ import React from 'react';
 
 const Preview = () => {
    return (
-      <div>
-         <h1>preview</h1>
+      <div className='container bg-preview vh-100'>
+         <img src='img/license1.png' className='img img-fluid' />
+         
       </div>
    );
 }
