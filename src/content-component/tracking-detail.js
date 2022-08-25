@@ -1,77 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import './adminlte.min.css'
 
 const TrackingDetail = () => {
-	const [trackData, setTrackData] = useState([
-		{
-			step: 1,
-			date: '20/08/2565',
-			status_id: 1,
-			status: 'เจ้าหน้าที่รับเรื่อง',
-		},
-		{
-			step: 2,
-			date: '21/08/2565',
-			status_id: 2,
-			status: 'ผ่านการตรวจสอบเอกสาร',
-		},
-		{
-			step: 3,
-			date: '22/08/2565',
-			status_id: 3,
-			status: 'รอรับมอบหลักประกันตัวจริง',
-		},
-		{
-			step: 4,
-			date: '23/08/2565',
-			status_id: 4,
-			status: 'เจ้าหน้าที่ออกตรวจสถานที่',
-		},
-		{
-			step: 5,
-			date: '25/08/2565',
-			status_id: 5,
-			status: 'ผ่านการออกตรวจสถานที่',
-		},
-		{
-			step: 6,
-			date: '27/08/2565',
-			status_id: 6,
-			status: 'อยู่ในขั้นตอนนายทะเบียนพิจราณา',
-		},
-	])
+	const location = useLocation()
+	console.log(location.state.requestCode)
+	const [trackData, setTrackData] = useState({
+		request_code: '',
+		request_name: '',
+		request_tracking: [
+			{
+				status_id: 1,
+				status_name: 'เจ้าหน้าที่รับเรื่อง',
+				date: '20/08/2565',
+			},
+			{
+				status_id: 2,
+				status_name: 'ผ่านการตรวจสอบเอกสาร',
+				date: '21/08/2565',
+			},
+			{
+				status_id: 3,
+				status_name: 'รอรับมอบหลักประกันตัวจริง',
+				date: '22/08/2565',
+			},
+			{
+				status_id: 4,
+				status_name: 'เจ้าหน้าที่ออกตรวจสถานที่',
+				date: '23/08/2565',
+			},
+			{
+				status_id: 5,
+				status_name: 'ผ่านการออกตรวจสถานที่',
+				date: '25/08/2565',
+			},
+			{
+				status_id: 6,
+				status_name: 'อยู่ในขั้นตอนนายทะเบียนพิจราณา',
+				date: '27/08/2565',
+			},
+		],
+	})
+
+	useEffect(() => {
+		return () => {
+			
+		}
+	}, [])
 
 	const [statusColor, setStatusColor] = useState('body')
 
 	return (
 		<>
-			{/* <div className='container mt-3 p-3'>
-				<div className='d-flex flex-column'>
-					<div className='card border-0'>
-						<div className='card-body'>
-							<h4 className='card-title fw-bolder'>คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ</h4>
-							<small className='card-title'>2 days ago</small>
-							<hr />
-							<div className='container'>
-								<div className='timeline-wrapper'>
-									{trackData
-										? trackData
-												.sort((a, b) => b.step - a.step)
-												.map((i) => (
-													<div className={'node node' +i.status_id} key={i.step}>
-														<h5>{i.status}</h5>
-														<p>{i.date}</p>
-													</div>
-												))
-										: ''}
-										
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> */}
-			<section className='content mb-5'>
+			<section className='content mb-5 p-3'>
 				<div className='row mx-1 my-3'>
 					<h3 className='card-title fw-bolder'>คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ</h3>
 				</div>
@@ -83,88 +64,21 @@ const TrackingDetail = () => {
 									<span className='bg-red'>8 days ago</span>
 								</div>
 								{trackData
-									? trackData
-											.sort((a, b) => b.step - a.step)
+									? trackData.request_tracking
+											.sort((a, b) => b.status_id - a.status_id)
 											.map((i) => (
-												<div key={i.step} className='mt-4'>
-													<i className={'fas fa-envelope status'+ i.status_id} />
+												<div key={i.status_id} className='mt-4'>
+													<i className={'fas fa-envelope status' + i.status_id} />
 													<div className='timeline-item'>
 														<span className='time'>
 															<i className='fas fa-clock' /> {i.date}
 														</span>
-														<h3 className='timeline-header'>
-														{i.status}
-														</h3>
+														<h3 className='timeline-header'>{i.status_name}</h3>
 													</div>
 												</div>
 											))
 									: ''}
 
-								{/* <div>
-									<i className='fas fa-envelope bg-blue' />
-									<div className='timeline-item'>
-										<span className='time'>
-											<i className='fas fa-clock' /> 22/08/2565
-										</span>
-										<h3 className='timeline-header'>
-											<a href='#'>Support Team</a> sent you an email
-										</h3>
-									</div>
-								</div>
-
-								<div>
-									<i className='fas fa-user bg-green' />
-									<div className='timeline-item'>
-										<span className='time'>
-											<i className='fas fa-clock' /> 21/08/2565
-										</span>
-										<h3 className='timeline-header no-border'>
-											<a href='#'>Sarah Young</a> accepted your friend request
-										</h3>
-									</div>
-								</div>
-
-								<div>
-									<i className='fas fa-comments bg-yellow' />
-									<div className='timeline-item'>
-										<span className='time'>
-											<i className='fas fa-clock' />
-											21/08/2565
-										</span>
-										<h3 className='timeline-header'>
-											<a href='#'>Jay White</a> commented on your post
-										</h3>
-									</div>
-								</div>
-
-								<div>
-									<i className='fa fa-camera bg-purple' />
-									<div className='timeline-item'>
-										<span className='time'>
-											<i className='fas fa-clock' /> 2 days ago
-										</span>
-										<h3 className='timeline-header'>
-											<a href='#'>Mina Lee</a> uploaded new photos
-										</h3>
-									</div>
-								</div>
-
-								<div>
-									<i className='fas fa-video bg-maroon' />
-									<div className='timeline-item'>
-										<span className='time'>
-											<i className='fas fa-clock' /> 20/08/2565
-										</span>
-										<h3 className='timeline-header'>
-											<a href='#'>Mr. Doe</a> shared a video
-										</h3>
-									</div>
-								</div> */}
-
-								{/* <div>
-									<i className='fas fa-clock bg-gray' />
-									
-								</div> */}
 								<div className='time-label'>
 									<span className='bg-secondary text-center px-3'>Start</span>
 								</div>

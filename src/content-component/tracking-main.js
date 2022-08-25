@@ -5,25 +5,19 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const Tracking = () => {
 	const navigate = useNavigate()
-	const [licenseRequest] = useState({
-		requestCode: '001',
-		requestName: 'คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ',
-		requestStatus: 5,
+	const [previewLicense] = useState({
+		LicenseNo: '650100111',
+		LicenseName: 'คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ',
 	})
 	const [request] = useState([
-		{ requestCode: '002', requestName: 'คำขอจดทะเบียนลูกจ้าง', requestStatus: 5 },
-		{ requestCode: '003', requestName: 'คำขอจัดตั้งสำนักงานชั่วคราว', requestStatus: 1 },
+		{ requestCode: '002', LicenseName: 'คำขอจดทะเบียนลูกจ้าง' },
+		{ requestCode: '003', LicenseName: 'คำขอจัดตั้งสำนักงานชั่วคราว' },
 	])
 	const [tempRequest, setTempRequest] = useState(request)
 
 	const [requestCode, setRequestCode] = useState('')
 
-	const trackingLicense = (requestCode) => {
-		// setRequest((state) => state.filter((item) => item.requestCode === requestCode))
-		// console.log(requestCode)
-		navigate('/preview')
-	}
-
+	
 	const onSearchChange = (e) => {
 		setRequestCode(e.target.value)
 	}
@@ -34,18 +28,23 @@ const Tracking = () => {
 		setTempRequest(filtered)
 		console.log(requestCode.length)
 	}
-	const onTrackingRequest = () => {
-		navigate('/tracking-detail')
+
+	const onTrackingLicense = () => {
+		navigate('/preview', { state: { previewLicense } })
 	}
+	const onTrackingRequest = (requestCode) => {
+		console.log('requestCode:',requestCode)
+		navigate('/tracking-detail', { state: { requestCode }})
+	}
+
 	return (
 		<div className='container bg-main vh-100'>
-			
 			<div className='d-flex flex-column mt-4 p-3'>
-				<b className='text-info fs-5'>{licenseRequest ? 'คำขอใบอนุญาต' : 'รายการคำขอ'}</b>
-				<div className=' w-auto mt-2' onClick={() => trackingLicense('001')}>
+				<b className='text-info fs-5'>{previewLicense ? 'คำขอใบอนุญาต' : 'รายการคำขอ'}</b>
+				<div className=' w-auto mt-2' onClick={() => onTrackingLicense()}>
 					<div className='card card_red mb-3 rounded-pill'>
 						<div className='card-body'>
-							<p className='card-title fs-6'>{licenseRequest.requestName}</p>
+							<p className='card-title fs-6'>{previewLicense.LicenseName}</p>
 						</div>
 					</div>
 				</div>
@@ -79,7 +78,7 @@ const Tracking = () => {
 							<div className=' w-auto mt-2' key={i.requestCode} onClick={() => onTrackingRequest(i.requestCode)}>
 								<div className='card card_three mb-3  rounded-pill'>
 									<div className='card-body'>
-										<p className='card-title fs-6'>{i.requestName}</p>
+										<p className='card-title fs-6'>{i.LicenseName}</p>
 									</div>
 								</div>
 							</div>
@@ -88,7 +87,7 @@ const Tracking = () => {
 							<div className=' w-auto mt-2' key={i.requestCode} onClick={() => onTrackingRequest(i.requestCode)}>
 								<div className='card card_three mb-3  rounded-pill'>
 									<div className='card-body'>
-										<p className='card-title fs-6'>{i.requestName}</p>
+										<p className='card-title fs-6'>{i.LicenseName}</p>
 									</div>
 								</div>
 							</div>
