@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route  } from 'react-router-dom'
 import Preview from './content-component/preview-license'
 import TrackingDetail from './content-component/tracking-detail'
 import Tracking from './content-component/tracking-main'
@@ -10,12 +10,14 @@ import { useLiff } from 'react-liff'
 import Login from './login'
 
 function App() {
+	const params = new URLSearchParams(window.location.search);
 	const { error, isLoggedIn, isReady, liff } = useLiff()
 	const [displayName, setDisplayName] = useState('')
 
 	const [userLogged] = useState(localStorage.getItem("user"));
 
 	useEffect(() => {
+		console.log(params.get("topic"))
 		if (!isLoggedIn) return
 
 		//-----------Get Line Profile------------//
@@ -31,7 +33,7 @@ function App() {
 		if (!isReady) return <p>Loading...</p>
 
 		if (!isLoggedIn /* ถ้าเข้าผ่านไลน์ */) {
-			if (userLogged) {
+			if (userLogged && params.get("topic")==='tracking') {
 				return <Tracking />
 			} else {
 				return <Login />
