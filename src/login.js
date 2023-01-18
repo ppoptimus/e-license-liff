@@ -25,7 +25,7 @@ const Login = () => {
 					className='btn btn-lg w-100 my-2 rounded-pill'
 					style={{ backgroundColor: '#F92C85', color: '#FFF' }}
 					onClick={onClickLogin}>
-					Login
+					Login + <label>{localStorage.user}</label> 
 				</button>
 			</div>
 		</div>

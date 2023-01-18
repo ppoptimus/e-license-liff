@@ -23,10 +23,10 @@ const Footer = () => {
 							<FontAwesomeIcon icon={faHomeAlt} className='fs-1' />
 							<p>Home</p>
 						</li>
-						<li className='nav-item text-center' onClick={onLogout}>
+						{/* <li className='nav-item text-center' onClick={onLogout}>
 							<FontAwesomeIcon icon={faSignOutAlt} className='fs-1' />
 							<p>Logout</p>
-						</li>
+						</li> */}
 						
 					</ul>
 				</footer>

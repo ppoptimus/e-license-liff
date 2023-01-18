@@ -8,6 +8,7 @@ import Footer from './menu-component/footer'
 
 import { useLiff } from 'react-liff'
 import Login from './login'
+import GetLocation from './content-component/location'
 
 function App() {
 	const params = new URLSearchParams(window.location.search);
@@ -18,10 +19,10 @@ function App() {
 
 	useEffect(() => {
 		console.log(params.get("topic"))
-		if (!isLoggedIn) return
+		if (!isLoggedIn) return;
 
 		//-----------Get Line Profile------------//
-		;(async () => {
+		(async () => {
 			const profile = await liff.getProfile()
 			setDisplayName(profile.displayName)
 		})()
@@ -32,24 +33,27 @@ function App() {
 		if (error) return <p>Something is wrong. {error}</p>
 		if (!isReady) return <p>Loading...</p>
 
-		if (!isLoggedIn /* ถ้าเข้าผ่านไลน์ */) {
-			if (userLogged && params.get("topic")==='tracking') {
+		if (isLoggedIn /* ถ้าเข้าผ่านไลน์ */) {
+			if (params.get("topic")==='tracking') {
 				return <Tracking />
-			} else {
-				return <Login />
+			} 
+			if (params.get("topic")==='location') {
+				return <GetLocation />
+			}else {
+				return <Wrongpage />
 			}
 		} else {
 			return <Wrongpage />
 		}
 
 	}
-	const showFooter = () => {
-		if (userLogged) {
-			return <Footer />
-		} else {
-			return ''
-		}
-	}
+	// const showFooter = () => {
+	// 	if (userLogged) {
+	// 		return <Footer />
+	// 	} else {
+	// 		return ''
+	// 	}
+	// }
 	return (
 		<>
 			<Routes>
@@ -58,7 +62,7 @@ function App() {
 				<Route path='preview' element={<Preview />} />
 				<Route path='*' element={<Wrongpage />} />
 			</Routes>
-			{showFooter()}
+			<Footer />
 		</>
 	)
 }
