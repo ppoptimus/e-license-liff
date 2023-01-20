@@ -43,7 +43,7 @@ function App() {
 				return <Wrongpage />
 			}
 		} else {
-			return <Wrongpage />
+			return <GetLocation />
 		}
 
 	}
