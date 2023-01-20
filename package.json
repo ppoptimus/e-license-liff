@@ -1,7 +1,7 @@
 {
   "name": "e-license-liff",
   "version": "0.1.0",
-  "homepage": "e-license",
+  "homepage": "service",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
