@@ -47,13 +47,7 @@ function App() {
 		}
 
 	}
-	// const showFooter = () => {
-	// 	if (userLogged) {
-	// 		return <Footer />
-	// 	} else {
-	// 		return ''
-	// 	}
-	// }
+	
 	return (
 		<>
 			<Routes>
@@ -62,7 +56,7 @@ function App() {
 				<Route path='preview' element={<Preview />} />
 				<Route path='*' element={<Wrongpage />} />
 			</Routes>
-			<Footer />
+			<Footer param={params.get("topic")} />
 		</>
 	)
 }

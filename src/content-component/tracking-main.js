@@ -45,14 +45,14 @@ const Tracking = () => {
         <>
           <div className="d-flex align-items-center justify-content-start mt-1">
             <input
-              className="form-control form-control-lg me-sm-2 rounded-pill rounded-end"
+              className="form-control form-control-lg rounded-pill rounded-end"
               type="text"
               placeholder="เลขที่คำขอ"
               onChange={onSearchChange}
             />
             <button
-              className="btn btn-lg bg-white my-2 my-sm-0 rounded-pill rounded-start"
-              style={{ border: "solid 1px #d6d6d6" }}
+              className="btn btn-lg bg-white rounded-pill rounded-start"
+              style={{ border: "solid 2px #d6d6d6" }}
               onClick={onSearchClick}
             >
               <FontAwesomeIcon icon={faSearch} />
