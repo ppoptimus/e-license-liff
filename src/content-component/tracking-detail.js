@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
 // import "./adminlte.min.css";
 
 const TrackingDetail = () => {
-  const location = useLocation();
-  console.log(location.state.requestCode);
+ 
   const [trackData, setTrackData] = useState({
     request_code: "",
     request_name: "",
+    start_date:"",
     request_tracking: [
       {
         status_id: 1,
@@ -48,7 +47,6 @@ const TrackingDetail = () => {
     return () => {};
   }, []);
 
-  const [statusColor, setStatusColor] = useState("body");
 
   return (
     <>

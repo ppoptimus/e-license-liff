@@ -4,8 +4,32 @@ import { faSearch, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const GetLocation = () => {
   const [officeAddress, setOfficeAddress] = useState([]);
+  const [officeNearMe, setOfficeNearMe] = useState([
+    {
+      officeId: 1,
+      officeName: "กรมการจัดหางาน กระทรวงแรงงาน กรุงเทพมหานคร",
+      officeAddress: "ถนน มิตรไมตรี แขวงดินแดง เขตดินแดง กรุงเทพมหานคร 10400",
+      officeTel: "1694",
+      lat: "",
+      long: "",
+      location:
+        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
+      distance: "0.5",
+    },
+  ])
   const [nameSearch, setNameSearch] = useState(null);
   const getOfficeData = [
+    {
+      officeId: 1,
+      officeName: "กรมการจัดหางาน กระทรวงแรงงาน กรุงเทพมหานคร",
+      officeAddress: "ถนน มิตรไมตรี แขวงดินแดง เขตดินแดง กรุงเทพมหานคร 10400",
+      officeTel: "1694",
+      lat: "",
+      long: "",
+      location:
+        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
+      distance: "0.5",
+    },
     {
       officeId: 11,
       officeName: "สำนักงานจัดหางานจังหวัดกำแพงเพชร",
@@ -14,6 +38,8 @@ const GetLocation = () => {
       officeTel: "0 5570 5023-4",
       lat: "",
       long: "",
+      location:
+        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
       distance: "10.5",
     },
     {
@@ -24,6 +50,8 @@ const GetLocation = () => {
       officeTel: "0 5641 3035-6",
       lat: "",
       long: "",
+      location:
+        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
       distance: "12",
     },
     {
@@ -34,6 +62,8 @@ const GetLocation = () => {
       officeTel: "055705023-4",
       lat: "",
       long: "",
+      location:
+        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
       distance: "14.8",
     },
     {
@@ -43,6 +73,8 @@ const GetLocation = () => {
       officeTel: "034-250861-2",
       lat: "",
       long: "",
+      location:
+        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
       distance: "15.5",
     },
   ];
@@ -57,7 +89,7 @@ const GetLocation = () => {
   };
 
   const onClickNearMe = () => {
-    setOfficeAddress(getOfficeData);
+    setOfficeAddress(officeNearMe);
   };
   return (
     <>
@@ -72,7 +104,7 @@ const GetLocation = () => {
                 <input
                   type="text"
                   className="form-control form-control-lg rounded-pill rounded-end"
-                  placeholder="เช่น อ่างทอง"
+                  placeholder="เช่น นครนายก"
                   onChange={onSearchChange}
                 />
 
@@ -104,17 +136,19 @@ const GetLocation = () => {
           {officeAddress
             ? officeAddress.map((i) => (
                 <div className="col-12">
-                  <div className="card mx-3 my-3">
-                    <div className="card-body" key={i.officeId}>
-                      <h5 className="card-title">{i.officeName}</h5>
-                      <p className="card-text">{i.officeAddress}</p>
-                      {i.officeTel}
-                      <p>
-                        <FontAwesomeIcon icon={faLocationDot} className="me-1" />
-                        {i.distance} km.
-                      </p>
+                  <a className="text-decoration-none" href={i.location}>
+                    <div className="card mx-3 my-3">
+                      <div className="card-body" key={i.officeId}>
+                        <h5 className="card-title">{i.officeName}</h5>
+                        <p className="card-text">{i.officeAddress}</p>
+                        {i.officeTel}
+                        <p>
+                          <FontAwesomeIcon icon={faLocationDot} className="me-1" />
+                          {i.distance} km.
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               ))
             : ""}

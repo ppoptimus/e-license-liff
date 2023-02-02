@@ -8,7 +8,7 @@ const Footer = (prop) => {
 	const navigate = useNavigate()
 
 	const onPrevious = () =>{
-		if(prop.param =='location'){
+		if(prop.param ==='location'){
 			ReloadPage();
 		}
 		else{
@@ -17,7 +17,7 @@ const Footer = (prop) => {
 	}
 
 	const onHome = () =>{
-		if(prop.param =='location'){
+		if(prop.param ==='location'){
 			ReloadPage();
 		}
 		else{

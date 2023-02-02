@@ -10,9 +10,9 @@ const Tracking = () => {
     LicenseName: "คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ",
   });
   const [request] = useState([
-    { requestCode: "001", LicenseName: "คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ" },
-    { requestCode: "002", LicenseName: "คำขอจดทะเบียนลูกจ้าง" },
-    { requestCode: "003", LicenseName: "คำขอจัดตั้งสำนักงานชั่วคราว" },
+    { requestCode: "6501001", LicenseName: "คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ" },
+    { requestCode: "6502002", LicenseName: "คำขอจดทะเบียนลูกจ้าง" },
+    { requestCode: "6503003", LicenseName: "คำขอจัดตั้งสำนักงานชั่วคราว" },
   ]);
   const [tempRequest, setTempRequest] = useState("");
 
@@ -29,11 +29,8 @@ const Tracking = () => {
     console.log(requestCode.length);
   };
 
-  const onTrackingLicense = () => {
-    navigate("/preview", { state: { previewLicense } });
-  };
   const onTrackingRequest = (requestCode) => {
-    console.log("requestCode:", requestCode);
+   
     navigate("/tracking-detail", { state: { requestCode } });
   };
 
