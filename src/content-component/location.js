@@ -27,7 +27,7 @@ const GetLocation = () => {
       lat: "",
       long: "",
       location:
-        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
+        "https://goo.gl/maps/erLSAajyfDhfHs6S7",
       distance: "0.5",
     },
     {
@@ -39,8 +39,8 @@ const GetLocation = () => {
       lat: "",
       long: "",
       location:
-        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
-      distance: "10.5",
+        "https://goo.gl/maps/fnQvdjkbjXaAHtk47",
+      distance: "310.5",
     },
     {
       officeId: 12,
@@ -51,8 +51,8 @@ const GetLocation = () => {
       lat: "",
       long: "",
       location:
-        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
-      distance: "12",
+        "https://goo.gl/maps/eXa8k2k5xmJEtief6",
+      distance: "212",
     },
     {
       officeId: 13,
@@ -63,8 +63,8 @@ const GetLocation = () => {
       lat: "",
       long: "",
       location:
-        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
-      distance: "14.8",
+        "https://goo.gl/maps/mTg3D3PDai6UQd9N8",
+      distance: "114.8",
     },
     {
       officeId: 14,
@@ -74,8 +74,8 @@ const GetLocation = () => {
       lat: "",
       long: "",
       location:
-        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
-      distance: "15.5",
+        "https://goo.gl/maps/Tv1dBtdEXrNy7HTY7",
+      distance: "75.5",
     },
   ];
 
@@ -134,7 +134,8 @@ const GetLocation = () => {
         </div>
         <div className="row">
           {officeAddress
-            ? officeAddress.map((i) => (
+            ? officeAddress
+            .map((i) => (
                 <div className="col-12">
                   <a className="text-decoration-none" href={i.location}>
                     <div className="card mx-3 my-3">
