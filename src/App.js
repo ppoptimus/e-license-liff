@@ -7,7 +7,6 @@ import Wrongpage from './content-component/wrongpage'
 import Footer from './menu-component/footer'
 
 import { useLiff } from 'react-liff'
-import Login from './login'
 import GetLocation from './content-component/location'
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
 	const [userLogged] = useState(localStorage.getItem("user"));
 
 	useEffect(() => {
-		console.log(params.get("topic"))
+		// console.log(params.get("topic"))
 		if (!isLoggedIn) return;
 
 		//-----------Get Line Profile------------//
@@ -43,7 +42,7 @@ function App() {
 				return <Wrongpage />
 			}
 		} else {
-			return <Wrongpage />
+			return <GetLocation />
 		}
 
 	}

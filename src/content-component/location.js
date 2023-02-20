@@ -1,102 +1,102 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import Authen from "../function-component/authen";
 
 const GetLocation = () => {
-  const [officeAddress, setOfficeAddress] = useState([]);
-  const [officeNearMe, setOfficeNearMe] = useState([
-    {
-      officeId: 1,
-      officeName: "กรมการจัดหางาน กระทรวงแรงงาน กรุงเทพมหานคร",
-      officeAddress: "ถนน มิตรไมตรี แขวงดินแดง เขตดินแดง กรุงเทพมหานคร 10400",
-      officeTel: "1694",
-      lat: "",
-      long: "",
-      location:
-        "https://www.google.co.th/maps/place/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%99/@13.7641111,100.5494844,17z/data=!3m1!4b1!4m6!3m5!1s0x311d62fffcfa94cb:0x36c9bb8e92d3596f!8m2!3d13.7641111!4d100.5516731!16s%2Fg%2F1hc48gyfc?hl=th",
-      distance: "0.5",
-    },
-  ])
+  const [authToken, setAuthToken] = useState({});
+  useEffect(() => {
+    setAuthToken(Authen());
+  }, []);
+
+  const [address, setOfficeAddress] = useState([]);
+
   const [nameSearch, setNameSearch] = useState(null);
   const getOfficeData = [
     {
-      officeId: 1,
-      officeName: "กรมการจัดหางาน กระทรวงแรงงาน กรุงเทพมหานคร",
-      officeAddress: "ถนน มิตรไมตรี แขวงดินแดง เขตดินแดง กรุงเทพมหานคร 10400",
-      officeTel: "1694",
-      lat: "",
-      long: "",
-      location:
-        "https://goo.gl/maps/erLSAajyfDhfHs6S7",
+      name: "กรมการจัดหางาน กระทรวงแรงงาน กรุงเทพมหานคร",
+      address: "ถนน มิตรไมตรี แขวงดินแดง เขตดินแดง กรุงเทพมหานคร 10400",
+      telno: "1694",
+      location: "https://goo.gl/maps/erLSAajyfDhfHs6S7",
       distance: "0.5",
     },
     {
-      officeId: 11,
-      officeName: "สำนักงานจัดหางานจังหวัดกำแพงเพชร",
-      officeAddress:
-        "ศาลากลางจังหวัดกำแพงเพชร ชั้น 2 ถนนกำแพงเพชร-สุโขทัย ตำบลหนองปลิง อำเภอเมือง จังหวัดกำแพงเพชร 62000",
-      officeTel: "0 5570 5023-4",
-      lat: "",
-      long: "",
-      location:
-        "https://goo.gl/maps/fnQvdjkbjXaAHtk47",
+      name: "สำนักงานจัดหางานจังหวัดกำแพงเพชร",
+      address: "ศาลากลางจังหวัดกำแพงเพชร ชั้น 2 ถนนกำแพงเพชร-สุโขทัย ตำบลหนองปลิง อำเภอเมือง จังหวัดกำแพงเพชร 62000",
+      telno: "0 5570 5023-4",
+      location: "https://goo.gl/maps/fnQvdjkbjXaAHtk47",
       distance: "310.5",
     },
     {
-      officeId: 12,
-      officeName: "สำนักงานจัดหางานจังหวัดชัยนาท",
-      officeAddress:
+      name: "สำนักงานจัดหางานจังหวัดชัยนาท",
+      address:
         "ศูนย์ราชการกระทรวงแรงงานจังหวัดชัยนาท ชั้น 2 สำนักงานจัดหางานจังหวัดชัยนาท 294 หมู่ 6 ตำบลบ้านกล้วย อำเภอเมือง จังหวัดชัยนาท 17000",
-      officeTel: "0 5641 3035-6",
-      lat: "",
-      long: "",
-      location:
-        "https://goo.gl/maps/eXa8k2k5xmJEtief6",
+      telno: "0 5641 3035-6",
+      location: "https://goo.gl/maps/eXa8k2k5xmJEtief6",
       distance: "212",
     },
     {
-      officeId: 13,
-      officeName: "สำนักงานจัดหางานจังหวัดนครนายก",
-      officeAddress:
-        "ศาลากลางจังหวัดนครนายก (หลังใหม่) ชั้น ๑ ถนนสุวรรณศร ตำบลท่าช้าง อำเภอเมืองนครนายก จังหวัดนครนายก",
-      officeTel: "055705023-4",
-      lat: "",
-      long: "",
-      location:
-        "https://goo.gl/maps/mTg3D3PDai6UQd9N8",
+      name: "สำนักงานจัดหางานจังหวัดนครนายก",
+      address: "ศาลากลางจังหวัดนครนายก (หลังใหม่) ชั้น ๑ ถนนสุวรรณศร ตำบลท่าช้าง อำเภอเมืองนครนายก จังหวัดนครนายก",
+      telno: "055705023-4",
+      location: "https://goo.gl/maps/mTg3D3PDai6UQd9N8",
       distance: "114.8",
     },
     {
-      officeId: 14,
-      officeName: "สำนักงานจัดหางานจังหวัดนครปฐม",
-      officeAddress: "เลขที่ 39 หมู่ 6 ตำบลดอนยายหอม อำเภอเมือง จังหวัดนครปฐม 73000",
-      officeTel: "034-250861-2",
-      lat: "",
-      long: "",
-      location:
-        "https://goo.gl/maps/Tv1dBtdEXrNy7HTY7",
+      name: "สำนักงานจัดหางานจังหวัดนครปฐม",
+      address: "เลขที่ 39 หมู่ 6 ตำบลดอนยายหอม อำเภอเมือง จังหวัดนครปฐม 73000",
+      telno: "034-250861-2",
+      location: "https://goo.gl/maps/Tv1dBtdEXrNy7HTY7",
       distance: "75.5",
     },
   ];
+
+  const getNearMe = async (lat, long) => {
+    let headersList = {
+      Accept: "*/*",
+      Authorization: `Bearer ${authToken.accessToken}`,
+      "Content-Type": "application/json",
+    };
+
+    let bodyContent = JSON.stringify({
+      latitude: lat,
+      longitude: long,
+    });
+
+    let reqOptions = {
+      url: "http://103.86.50.59:8082/sevice/nearme",
+      method: "POST",
+      headers: headersList,
+      data: bodyContent,
+    };
+
+    let response = await axios.request(reqOptions);
+    setOfficeAddress(response.data.result);
+    console.log(response.data.result);
+  };
+
+  const onClickNearMe = () => {
+    let lat = "13.846514499055383";
+    let long = "100.52604251231782";
+    getNearMe(lat, long);
+  };
 
   const onSearchChange = (e) => {
     setNameSearch(e.target.value);
   };
 
   const onSearchLocation = () => {
-    const data = getOfficeData.filter((i) => i.officeName.includes(nameSearch));
+    const data = getOfficeData.filter((i) => i.name.includes(nameSearch));
     setOfficeAddress(data);
   };
 
-  const onClickNearMe = () => {
-    setOfficeAddress(officeNearMe);
-  };
   return (
     <>
       <div className="nav navbar bg-info mx-0 justify-content-center align-items-center pt-3">
         <div className="h4">ค้นหาสาขาใกล้คุณ</div>
       </div>
-      <div className="container">
+      <div className="container pb-5">
         <div className="row">
           <div className="col-12">
             <div className="m-3">
@@ -132,17 +132,16 @@ const GetLocation = () => {
             </div>
           </div>
         </div>
-        <div className="row">
-          {officeAddress
-            ? officeAddress
-            .map((i) => (
-                <div className="col-12">
+        <div className="row mb-5">
+          {address
+            ? address.map((i, index) => (
+                <div className="col-12" key={index}>
                   <a className="text-decoration-none" href={i.location}>
                     <div className="card mx-3 my-3">
-                      <div className="card-body" key={i.officeId}>
-                        <h5 className="card-title">{i.officeName}</h5>
-                        <p className="card-text">{i.officeAddress}</p>
-                        {i.officeTel}
+                      <div className="card-body">
+                        <h5 className="card-title">{i.name}</h5>
+                        <p className="card-text">{i.address}</p>
+                        {i.telno}
                         <p>
                           <FontAwesomeIcon icon={faLocationDot} className="me-1" />
                           {i.distance} km.

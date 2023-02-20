@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ReloadPage from './fuction-component/reload-page'
+import ReloadPage from './function-component/reload-page'
 
 const Login = () => {
 	const [username, setUsername] = useState('')

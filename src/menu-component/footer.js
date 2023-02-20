@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft, faHomeAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import ReloadPage from '../fuction-component/reload-page'
+import ReloadPage from '../function-component/reload-page'
 
 const Footer = (prop) => {
 	const navigate = useNavigate()
