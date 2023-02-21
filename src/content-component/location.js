@@ -6,13 +6,14 @@ import Authen from "../function-component/authen";
 
 const GetLocation = () => {
   const [authToken, setAuthToken] = useState({});
+
   useEffect(() => {
     setAuthToken(Authen());
   }, []);
 
   const [address, setOfficeAddress] = useState([]);
-
   const [nameSearch, setNameSearch] = useState(null);
+
   const getOfficeData = [
     {
       name: "กรมการจัดหางาน กระทรวงแรงงาน กรุงเทพมหานคร",
@@ -52,34 +53,32 @@ const GetLocation = () => {
     },
   ];
 
-  const getNearMe = async (lat, long) => {
-    let headersList = {
-      Accept: "*/*",
-      Authorization: `Bearer ${authToken.accessToken}`,
-      "Content-Type": "application/json",
-    };
-
-    let bodyContent = JSON.stringify({
-      latitude: lat,
-      longitude: long,
-    });
-
-    let reqOptions = {
-      url: "http://103.86.50.59:8082/sevice/nearme",
-      method: "POST",
-      headers: headersList,
-      data: bodyContent,
-    };
-
-    let response = await axios.request(reqOptions);
-    setOfficeAddress(response.data.result);
-    console.log(response.data.result);
-  };
-
   const onClickNearMe = () => {
-    let lat = "13.846514499055383";
-    let long = "100.52604251231782";
-    getNearMe(lat, long);
+    navigator.geolocation.getCurrentPosition(async function (position) {
+      let headersList = {
+        Accept: "*/*",
+        Authorization: `Bearer ${authToken.accessToken}`,
+        "Content-Type": "application/json",
+      };
+      let bodyContent = JSON.stringify({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+      let reqOptions = {
+        url: "http://103.86.50.59:8082/sevice/nearme",
+        method: "POST",
+        headers: headersList,
+        data: bodyContent,
+      };
+      try {
+        let response = await axios.request(reqOptions);
+        setOfficeAddress(response.data.result);
+        console.log(position.coords.latitude);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    
   };
 
   const onSearchChange = (e) => {
@@ -87,8 +86,33 @@ const GetLocation = () => {
   };
 
   const onSearchLocation = () => {
-    const data = getOfficeData.filter((i) => i.name.includes(nameSearch));
-    setOfficeAddress(data);
+    
+    navigator.geolocation.getCurrentPosition(async function (position) {
+      let headersList = {
+        Accept: "*/*",
+        Authorization: `Bearer ${authToken.accessToken}`,
+        "Content-Type": "application/json",
+      };
+      let bodyContent = JSON.stringify({
+        "branchName": nameSearch,
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+      let reqOptions = {
+        url: "http://103.86.50.59:8082/sevice/searchbranch",
+        method: "POST",
+        headers: headersList,
+        data: bodyContent,
+      };
+      try {
+        let response = await axios.request(reqOptions);
+        setOfficeAddress(response.data.result);
+        console.log(response.data.result);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    
   };
 
   return (
