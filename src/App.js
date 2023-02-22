@@ -42,7 +42,7 @@ function App() {
 				return <Wrongpage />
 			}
 		} else {
-			return <GetLocation />
+			return <Tracking />
 		}
 
 	}
