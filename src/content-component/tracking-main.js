@@ -7,22 +7,19 @@ import Authen from "../function-component/authen";
 
 const Tracking = () => {
   const [authToken, setAuthToken] = useState({});
+  const navigate = useNavigate();
+
   useEffect(() => {
     setAuthToken(Authen());
   }, []);
 
-  const navigate = useNavigate();
-  const [previewLicense] = useState({
-    LicenseNo: "650100111",
-    LicenseName: "คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ",
-  });
-  const [request, setRequest] = useState([]);
   const [reffNo, setReffNo] = useState("3654400543102");
   const [tempRequest, setTempRequest] = useState("");
 
   const onSearchChange = (e) => {
     setReffNo(e.target.value);
   };
+
   const onSearchClick = async () => {
     let headersList = {
       Accept: "*/*",
@@ -38,11 +35,11 @@ const Tracking = () => {
 
     let response = await axios.request(reqOptions);
     setTempRequest(response.data.result);
-    console.log(response.data.result);
   };
 
   const onTrackingRequest = (requestCode) => {
-    navigate("/tracking-detail", { state: { requestCode } });
+    console.log(requestCode)
+    navigate("/tracking-detail", { state: { prop:requestCode, token: authToken.accessToken} });
   };
 
   return (

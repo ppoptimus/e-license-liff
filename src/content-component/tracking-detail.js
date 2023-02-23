@@ -1,52 +1,39 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
-// import "./adminlte.min.css";
+import axios from "axios";
+import Authen from "../function-component/authen";
 
 const TrackingDetail = () => {
- 
-  const [trackData, setTrackData] = useState({
-    request_code: "",
-    request_name: "",
-    start_date:"",
-    request_tracking: [
-      {
-        status_id: 1,
-        status_name: "เจ้าหน้าที่รับเรื่อง",
-        date: "20/08/2565",
-      },
-      {
-        status_id: 2,
-        status_name: "ผ่านการตรวจสอบเอกสาร",
-        date: "21/08/2565",
-      },
-      {
-        status_id: 3,
-        status_name: "รอรับมอบหลักประกันตัวจริง",
-        date: "22/08/2565",
-      },
-      {
-        status_id: 4,
-        status_name: "เจ้าหน้าที่ออกตรวจสถานที่",
-        date: "23/08/2565",
-      },
-      {
-        status_id: 5,
-        status_name: "ผ่านการออกตรวจสถานที่",
-        date: "25/08/2565",
-      },
-      {
-        status_id: 6,
-        status_name: "อยู่ในขั้นตอนนายทะเบียนพิจราณา",
-        date: "27/08/2565",
-      },
-    ],
-  });
+  const token = Authen.accessToken;
+  const [authToken, setAuthToken] = useState({});
+  const location = useLocation();
+
+  const [trackData, setTrackData] = useState([]);
 
   useEffect(() => {
-    return () => {};
+    setAuthToken(Authen());
+    getTrackingDetail();
   }, []);
 
+  const getTrackingDetail = async () => {
+    let headersList = {
+      Accept: "*/*",
+      Authorization: `Bearer ${location.state.token}`,
+      "Content-Type": "application/json",
+    };
+
+    let reqOptions = {
+      url: `http://103.86.50.59:8082/sevice/tracking?requestCode=${location.state.prop}`,
+      method: "GET",
+      headers: headersList,
+    };
+
+    let response = await axios.request(reqOptions);
+    console.log(response.data.result[0].statusDate);
+    setTrackData(response.data.result);
+  };
 
   return (
     <>
@@ -55,26 +42,28 @@ const TrackingDetail = () => {
           <h3 className="card-title fw-bolder">คำขอใบอนุญาตนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ</h3>
         </div>
         <div className="container-fluid">
-          <div className="row">
+          <div className="row mb-3">
             <div className="col-md-12">
               <div className="timeline">
                 <div className="time-label">
                   <span className="bg-info px-2 py-1">8 days ago</span>
                 </div>
                 {trackData
-                  ? trackData.request_tracking
-                      .sort((a, b) => b.status_id - a.status_id)
+                  ? trackData
+                      .sort((a, b) => b.statusId - a.statusId)
                       .map((i) => (
-                        <div key={i.status_id} className="mt-4">
-                          {/* <i className={"fas fa-envelope status" + i.status_id} /> */}
+                        <div key={i.statusId} className="my-4">
                           <div className="row">
                             <div className="col-1">
-                              <FontAwesomeIcon icon={faCircle} className={"fs-2 status" + i.status_id} />
+                              <FontAwesomeIcon icon={faCircle} className={"fs-2 status" + i.statusId} />
                             </div>
                             <div className="col-10">
-                              <p className="h4">{i.status_name}</p>
-                              <p className="time">
-                                <FontAwesomeIcon icon={faClockRotateLeft} className="" /> {i.date}
+                              <p className="h5">{i.statusName}</p>
+                              <p className="h6">
+                                <small>
+                                  <FontAwesomeIcon icon={faClockRotateLeft} />
+                                </small>{" "}
+                                <small>{i.statusDate}</small>
                               </p>
                             </div>
                           </div>
